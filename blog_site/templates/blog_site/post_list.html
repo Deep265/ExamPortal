@@ -1,0 +1,72 @@
+{% extends 'index.html' %}
+{% block body %}
+
+<div class="container">
+
+<div class="row">
+    <!-- Timer -->
+    <p id="demo"></p>
+   <script>
+// Set the date we're counting down to
+var countDownDate = new Date("December 23, 2020 01:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is over, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
+
+    <!-- End of Timer -->
+            <!-- Posts -->
+            {% for post in post_list %}
+
+        <div class="col">
+            <div class="card card-body">
+                <h2 class="card-title post-title"><a href="{% url 'blog:post_detail' pk=post.pk %}" class="titles1">{{ post.title }}</a></h2>
+                <p class="card-text text-color para-post">{{ post.text|truncatewords_html:100 }}</p>
+                <div>
+                    <p class="font-weight-bold text-color"> {{ post.published_date }}</p>
+                    <button class="btn titles1" style="background-color:#1098F7"><a href="{% url 'blog:post_detail' pk=post.pk %}" class="text-light">More</a></button>
+
+                </div>
+                <a href="{% url 'blog:add_comment' pk=post.pk %}" class="border-right-5 pt-3">Add comment
+                    <!-- Arrow -->
+                <svg width="1.4em" height="1.4em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+</svg>
+                    <!-- End of Arrow -->
+                </a>
+            </div>
+        </div>
+
+            {% endfor %}
+
+    <!-- End of Posts -->
+</div>
+
+</div>
+
+
+
+{% endblock %}

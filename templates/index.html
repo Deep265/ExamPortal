@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Ordeal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito&family=PT+Sans+Narrow&family=Roboto:ital@1&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&family=Rambla:ital@1&family=Roboto:ital@1&display=swap" rel="stylesheet">
+
+    <!-- Google Fonts Test -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <!-- Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+       <!-- Fontasow -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome.min.css' %}">
+    <script src="{% static 'js/all.min.js' %}"></script>
+    <script src="{% static 'js/fontawesome.min.js' %}"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index_test1.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/test_list1.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/test_detail.css' %}">
+</head>
+<body>
+<!-- Start of Navbar -->
+<nav class="navbar navbar-expand-lg navbar-bg-color navbar-height">
+    <!-- Navbar Brand -->
+    <a class="navbar-brand navbar-text-color"><i class="fab fa-asymmetrik fa-4x"></i></a>
+    <!-- End of Navbar Brand -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nax">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Navbar menus -->
+    <div class="collapse navbar-collapse" id="nax">
+        <ul class="navbar-nav mr-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link navbar-text-color" href="{% url 'exam:test_index' %}">Welcome,{{user}}</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link navbar-text-color" href="{% url 'exam:test_index' %}">Welcome</a>
+            </li>
+            {% endif %}
+            {% if user.is_superuser %}
+            <li class="nav-item">
+                <a class="nav-link navbar-text-color" href="{% url 'exam:Test' %}">Test</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-text-color" href="{% url 'exam:test_list' %}">All Tests</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-text-color" href="{% url 'exam:add_question' %}">New Question</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-text-color" href="{% url 'exam:question' %}">Question Set</a>
+            </li>
+            {% endif %}
+            {% if not user.is_superuser %}
+            <li class="nav-item">
+                <a class="nav-link navbar-text-color" href="{% url 'exam:student_register' %}">Tests</a>
+            </li>
+            {% endif %}
+        </ul>
+        {% if user.is_authenticated %}
+        <a class="nav-link mr h4 navbar-text-color" href="{% url 'authorization:logout' %}">Logout <i class="fas fa-sign-out-alt"></i> </a>
+        {% else %}
+        <a class="nav-link mr h4 navbar-text-color" href="{% url 'authorization:login' %}">Login <i class="fas fa-sign-in-alt"></i> </a>
+        {% endif %}
+    </div>
+    <!-- End of Navbar menus -->
+</nav>
+<!-- End of Navbar -->
+{% block nav %}
+<!-- Banner -->
+<div class="container-fluid">
+    <div class="row banner justify-content-center align-items-center">
+        <!-- Banner Title -->
+        <div class="test-font text-center" ><span class="test-font text-light" style="font-size:3.4rem">Welcome To,</span>
+        <span class="text-capitalize banner-title">Ordeal</span><br>
+            <!-- Banner button -->
+            <a href="#" class="test-font test-color banner-link">Explore
+                <span class="pl-1">
+                    <i class="fas fa-arrow-right"></i>
+                </span>
+            </a>
+            <!-- End of Banner button -->
+        </div>
+        <!-- End of Banner Title -->
+
+    </div>
+</div>
+<!-- End of Banner -->
+
+<!-- Start of About Us -->
+<div class="container-fluid py-5 about-section">
+    <div class="row">
+        <!-- About Us Text -->
+        <div class="col-md-6 col-10 text-center p-4">
+            <div class="text-center">
+                <strong class="about-title text-capitalize test-title">About Us</strong>
+            </div>
+
+            <div class="text-center about-text p-5 text-muted">
+                Lorem Ipsum Dolor Sit Amet Consectrtur Adipisicing Elit. Voluptate Beatae
+                Est Hic Insto Cuoitate Modi!Lorem Ipsum Dolor Sit Amet Consectetur, Adipisicing Elit. Ipsa,Facere.
+            </div>
+
+            <a href="#" class="test-font test-color about-link">
+                Explore
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+        <!-- End of About Us Text -->
+
+        <!-- About Us Image -->
+         <div class="col-10 col-md-6 text-center align-self-center ">
+             <div class="about-img align-self-center">
+                 <img src="{% static 'img/test/test_about.jpg' %}" class="img-fluid about-img-height-width">
+             </div>
+
+         </div>
+        <!-- End of About Us Image -->
+    </div>
+</div>
+<!-- End of About Us -->
+
+<!-- Start of Services -->
+<div class="container pb-4 bg-light mt-5">
+    <div class="row justify-content-center">
+        <div class="col-10">
+        <!-- Title of Services -->
+
+            <div class="service-title text-center pb-5">
+                <span class="small-title">Training Stables</span><br>
+                <strong class="test-color">Our Services</strong>
+                <div class="text-underline"></div>
+                <div class="text-middle"></div>
+            </div>
+        <!-- End of Title Services -->
+        </div>
+        <!-- Start of Service content -->
+            <!-- Start of 1st col -->
+        <div class="col-md-4 col-sm-6 col-lg-4 col-10">
+            <div class="card card-shadow">
+                <div class="image-container">
+                    <img class="card-img-top card-img" src="{% static 'img/test/test_time.jpg' %}">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Time Consumption</h4>
+                    <p class="card-text">
+                        Ease of Access to the Questions from all the creators.
+                        Easily Create and Update the Questions anytime anywhere.Ultimately avoids time Consumption.
+                    </p>
+                </div>
+            </div>
+        </div>
+            <!-- End of 1st col -->
+            <!-- Start of 2nd col -->
+        <div class="col-md-4 col-sm-6 col-lg-4 col-10">
+            <div class="card card-shadow">
+                <div class="image-container">
+                    <img class="card-img-top card-img" src="{% static 'img/test/efficiency.jpg' %}">
+                </div>
+
+                <div class="card-body">
+                    <h4 class="card-title">Simple UI</h4>
+                    <p class="card-text">
+                        User Interface (UI) Design focuses on anticipating what users might need to do and ensuring
+                        that the interface has elements that are easy to access, understand, and use to facilitate those actions
+                    </p>
+                </div>
+            </div>
+        </div>
+            <!-- End of 2nd col -->
+        <!-- Start of 3rd col -->
+        <div class="col-md-4 col-sm-6 col-lg-4 col-10">
+            <div class="card card-shadow">
+                <div class="image-container">
+                    <img class="card-img-top card-img" src="{% static 'img/test/blog.jpg' %}">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Blogs</h4>
+                      <p class="card-text">
+                        Post, Share and Update All the contents You want any time any where.
+                          Share Links and mail results.<br>
+                          Connect with the other Users.<br>
+                          Create New Contents Any time any Where <br>
+                       </p>
+                </div>
+            </div>
+        </div>
+        <!-- End of 3rd col -->
+        <!-- End of Service content -->
+
+    </div>
+</div>
+<!-- End of Services -->
+
+<!-- Types of Exams -->
+<div class="container-fluid type-background">
+    <div class="row justify-content-center">
+        <!-- types title -->
+        <div class="col-10 p-4">
+            <div class="text-center">
+                <h3 class="types-title text-center">Training Stables</h3>
+            </div>
+            <div class="text-center">
+                <h3 class="types-main-title test-color">Featured Contents</h3>
+                <div class="text-underline"></div>
+                <div class="text-middle"></div>
+            </div>
+        </div>
+        <!-- End of types title -->
+
+        <!-- Start of Objectives -->
+        <div class="col-md-4 col-lg-4 col-10 d-flex justify-content-around p-5">
+            <div class="align-self-center objectives-border">
+                <i class="far fa-lightbulb fa-3x types-icon-color"></i>
+            </div>
+            <div class="col">
+                <p class="h4 test-font" style="color:#EDFFD9;">Objectives</p>
+                <p class="types-text-color">Lorem Ipsum Deolet liot note</p>
+                <a href="#" class="types-icon-color">Read More
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        <!-- End of Objectives -->
+
+        <!-- Start of smart question Bank -->
+        <div class="col-md-4 col-lg-4 col-10 d-flex justify-content-around p-5">
+            <div class="align-self-center objectives-border">
+                <i class="fas fa-book-reader fa-3x types-icon-color"></i>
+            </div>
+            <div class="col">
+                <p class="h4 test-font" style="color:#EDFFD9;">Question Bank</p>
+                <p class="types-text-color">Lorem Ipusm Dealot liot hola ldima</p>
+                <a href="#" class="types-icon-color">Read More
+                <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        <!-- End of smart quesiton bank -->
+
+        <!-- Start of smart question Bank -->
+        <div class="col-md-4 col-lg-4 col-10 d-flex justify-content-around p-5">
+            <div class="align-self-center objectives-border">
+                <i class="fas fa-wifi fa-3x types-icon-color"></i>
+            </div>
+            <div class="col">
+                <p class="h4 test-font" style="color:#EDFFD9;">Online Exams</p>
+                <p class="types-text-color">Lorem Ipusm Dealot liot hola ldima</p>
+                <a href="#" class="types-icon-color">Read More
+                <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        <!-- End of smart quesiton bank -->
+
+        <!-- Start of smart question Bank -->
+        <div class="col-md-4 col-lg-4 col-10 d-flex justify-content-around p-5">
+            <div class="align-self-center objectives-border">
+                <i class="far fa-clock fa-3x types-icon-color"></i>
+            </div>
+            <div class="col">
+                <p class="h4 test-font" style="color:#EDFFD9;">Easy Scheduling and Allocation</p>
+                <p class="types-text-color">Lorem Ipusm Dealot liot hola ldima</p>
+                <a href="#" class="types-icon-color">Read More
+                <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        <!-- End of smart quesiton bank -->
+
+    </div>
+</div>
+<!-- End of Types of Exam -->
+
+<!-- Start of Footer -->
+<footer class="container-fluid footer-background p-5">
+    <div class="row">
+        <!-- Start of the info Page -->
+        <div class="col-md-6 col-lg-6 col-10">
+            <div class="text-center p-4">
+                <i class="fab fa-asymmetrik fa-4x navbar-text-color"></i>
+            </div>
+            <div class="text-center p-3">
+               <p class="footer-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora incidunt
+                   et perferendis ratione quod accusamus sit dolor optio eveniet vero.
+               </p>
+            </div>
+            <div class="">
+                <p class="navbar-text-color text-center">
+                    Read More <i class="fas fa-arrow-right"></i>
+                </p>
+            </div>
+        </div>
+        <!-- End of the info Page -->
+        <!-- Start of Contact Page -->
+        <div class="col-md-6 col-lg-6 col-10">
+            <div class="text-center p-4">
+                <h2 class="footer-contact-text test-font">Contact</h2>
+            </div>
+          <!-- Start of Address -->
+            <div class="d-flex justify-content-between my-5">
+                <i class="fas fa-map navbar-text-color"></i>
+                <span class="footer-text-color">
+                    123 Main Street Veince,CA 90020
+                </span>
+            </div>
+          <!-- End of Address -->
+          <!-- Start of Phone -->
+            <div class="d-flex justify-content-between my-5">
+                <i class="fas fa-phone navbar-text-color"></i>
+                <span class="footer-text-color">
+                    +123 456 789
+                </span>
+            </div>
+          <!-- End of Phone -->
+          <!-- Start of Email -->
+            <div class="d-flex justify-content-between my-5">
+                <i class="fas fa-envelope navbar-text-color"></i>
+                <span class="footer-text-color">
+                    Email@Email.com
+                </span>
+            </div>
+          <!-- End of Email -->
+        </div>
+        <!-- End of Contact Page -->
+    </div>
+</footer>
+<!-- End of Footer -->
+{% endblock %}
+</body>
+</html>

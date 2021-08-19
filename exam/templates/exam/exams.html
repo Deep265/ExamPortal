@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load static %}
+{% extends 'index.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="POST">
+    {% csrf_token %}
+
+    <h1>The Question is:- {{ i.question }}</h1>
+    <input type="radio" value={{i.option1}} name="answer"> {{ i.option1 }}<br>
+    <input type="radio" value={{i.option2}} name="answer" > {{ i.option2 }}<br>
+    <input type="radio" value={{i.option3}} name="answer" > {{ i.option3 }}<br>
+    <input type="radio" value={{i.option4}} name="answer" > {{ i.option4 }}<br>
+
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

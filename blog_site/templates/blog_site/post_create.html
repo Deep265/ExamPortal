@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% block body %}
+
+<form method="POST">
+    {% csrf_token %}
+    <!-- Title input Group -->
+    <div class="input-group p-4">
+
+         <h3>Title:-</h3>
+        <input type="text" placeholder="Enter the title of Post" class="form-control" name="title">
+</div>
+
+
+    <!-- End of title Input Group -->
+    <!-- Text -->
+    <div class="input-group p-4">
+    <label for="text"><h3>Text:-</h3></label>
+<textarea name="text" class="form-control" style="height:10rem"></textarea>
+    </div>
+
+    <input type="submit" value="Submit" class="btn btn-warning ml-5">
+        <!-- End of Text -->
+
+</form>
+
+
+
+{% endblock %}

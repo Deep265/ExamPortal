@@ -1,0 +1,44 @@
+@media screen and (max-width: 600px) {
+  .hide{
+    visibility: hidden;
+    background-color: black;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+  }
+}
+
+.question-num-background{
+    background-color: #e8eae6;
+}
+
+.test-detail-exam-min-height{
+   min-height: 85vh;
+}
+
+.question-background-color{
+   background-color: #fafaf5;
+   border-right: 9px solid #BFC0C0;
+}
+
+.question-card-shadow{
+   box-shadow: 5px 4px gray;
+   border:1.4px solid #fa7921;
+}
+
+.register-link{
+    font-family: 'Courgette', cursive;
+    font-size: 1.4rem;
+}
+
+.question-title-admin{
+   font-family: 'Pacifico', cursive;
+}
+
+.timer{
+    border: 3px solid transparent;
+    font-family: 'Courgette', cursive;
+    font-size: 1.4rem;
+ }

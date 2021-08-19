@@ -1,0 +1,73 @@
+{% extends 'test/index_test.html' %}
+{% block nav %}
+
+<div class="container">
+    <div class="row justify-content-center align-self-center pt-5 pb-5">
+        <div class="col-10">
+            <form method="post">
+                {% csrf_token %}
+                <div class="jumbotron">
+            <h2 class="h3">Are you sure do you want to Remove <span class="h2 font-weight-bold"> {{test}}</span>  Question?</h2>
+            <input type="submit" value="Delete" style="background-color:#fd3a69" class="btn btn-outline-dark">
+            </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!-- Start of Footer -->
+<footer class="container-fluid footer-background p-5">
+    <div class="row">
+        <!-- Start of the info Page -->
+        <div class="col-md-6 col-lg-6 col-10">
+            <div class="text-center p-4">
+                <i class="fab fa-asymmetrik fa-4x navbar-text-color"></i>
+            </div>
+            <div class="text-center p-3">
+               <p class="footer-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora incidunt
+                   et perferendis ratione quod accusamus sit dolor optio eveniet vero.
+               </p>
+            </div>
+            <div class="">
+                <p class="navbar-text-color text-center">
+                    Read More <i class="fas fa-arrow-right"></i>
+                </p>
+            </div>
+        </div>
+        <!-- End of the info Page -->
+        <!-- Start of Contact Page -->
+        <div class="col-md-6 col-lg-6 col-10">
+            <div class="text-center p-4">
+                <h2 class="footer-contact-text test-font">Contact</h2>
+            </div>
+          <!-- Start of Address -->
+            <div class="d-flex justify-content-between my-5">
+                <i class="fas fa-map navbar-text-color"></i>
+                <span class="footer-text-color">
+                    123 Main Street Veince,CA 90020
+                </span>
+            </div>
+          <!-- End of Address -->
+          <!-- Start of Phone -->
+            <div class="d-flex justify-content-between my-5">
+                <i class="fas fa-phone navbar-text-color"></i>
+                <span class="footer-text-color">
+                    +123 456 789
+                </span>
+            </div>
+          <!-- End of Phone -->
+          <!-- Start of Email -->
+            <div class="d-flex justify-content-between my-5">
+                <i class="fas fa-envelope navbar-text-color"></i>
+                <span class="footer-text-color">
+                    Email@Email.com
+                </span>
+            </div>
+          <!-- End of Email -->
+        </div>
+        <!-- End of Contact Page -->
+    </div>
+</footer>
+<!-- End of Footer -->
+{% endblock %}

@@ -1,0 +1,201 @@
+{% extends 'test/index_test.html' %}
+{% load mathfilters %}
+{% block nav %}
+
+<script>
+    function startTimer(duration, display) {
+    var start = Date.now(),
+        diff,
+        minutes,
+        seconds;
+    function timer() {
+        // get the number of seconds that have elapsed since
+        // startTimer() was called
+        diff = duration - (((Date.now() - start) / 1000) | 0);
+
+        // does the same job as parseInt truncates the float
+        minutes = (diff / 60) | 0;
+        seconds = (diff % 60) | 0;
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.value = minutes + ":" + seconds;
+        display.name = 'sup';
+
+        if (minutes == 0 && seconds == 0){
+              document.getElementById("next").click(); // Click on the checkbox
+              }
+
+        if (diff <= 0) {
+            // add one second so that the count down starts at the full duration
+            // example 05:00 not 04:59
+            start = Date.now() + 1000;
+        }
+    };
+    // we don't want to wait a full second before the timer starts
+    timer();
+    setInterval(timer, 1000);
+}
+
+window.onload = function () {
+    var fiveMinutes = (60*{{time_remain_min}})+{{time_remain_sec}},
+        display = document.querySelector('#time');
+    startTimer(fiveMinutes, display);
+};
+
+</script>
+
+{% if start == 0 and end == 0 %}
+<div class="container-fluid">
+    <div class="row ">
+        <!-- Start of Question numbers side -->
+        <div class="col-lg-4 col-md-4 col-sm-4 p-3 test-detail-exam-min-height text-center question-background-color hide">
+            <h2 class="h4 light-font text-center">Question Numbers:-</h2>
+            {% for i in all_questions %}
+              {% if test.id == i.id %}
+               <span class="btn btn-default question-num-background rounded-circle p-2 m-2 font-weight-bold" style="color:blue">{{ i.id }}</span>
+              {% else %}
+            <span class="btn btn-default question-num-background rounded-circle p-2 m-2 font-weight-bold">{{ i.id }}</span>
+              {% endif %}
+            {% endfor %}
+        </div>
+        <!-- End of Question numbers side -->
+        <!-- Start of Detail side -->
+        <div class="col-lg-8  col-md-8 col-sm-8 test-detail-exam-min-height">
+
+            <form method="post">
+                <div class="text-right">
+                    <input id="time" type="text" name="time" class="timer">
+                </div>
+
+                {% csrf_token %}
+                <h2 class="new-question"><span>Q </span>{{ questions.test_question.question }}</h2>
+                 <div class="form-check py-2 ml-3">
+                   <input class="form-check-input" type="radio" name="answer" value="a">
+                      <label class="form-check-label" for="exampleRadios1">
+                          {% if questions.test_question.optionimg1 %}
+                          <img src="{{questions.test_question.optionimg1.url}}" class="img-thumbnail img-fluid">
+                          {% else %}
+                          <span class="h5 new-question ml-2">{{ questions.test_question.option1 }}</span>
+                          {% endif %}
+                      </label>
+                 </div>
+                 <div class="form-check py-2 ml-3">
+                   <input class="form-check-input" type="radio" name="answer" value="b">
+                      <label class="form-check-label" for="exampleRadios1">
+                          {% if questions.test_question.optionimg2 %}
+                          <img src="{{questions.test_question.optionimg2.url}}" class="img-thumbnail img-fluid">
+                          {% else %}
+                          <span class="h5 new-question ml-2">{{ questions.test_question.option2 }}</span>
+                          {% endif %}
+                      </label>
+                 </div>
+                <div class="form-check py-2 ml-3">
+                   <input class="form-check-input" type="radio" name="answer" value="c">
+                      <label class="form-check-label" for="exampleRadios1">
+                          {% if questions.test_question.optionimg3 %}
+                          <img src="{{questions.test_question.optionimg3.url}}" class="img-thumbnail img-fluid">
+                          {% else %}
+                          <span class="h5 new-question ml-2">{{ questions.test_question.option3 }}</span>
+                          {% endif %}
+                      </label>
+                 </div>
+                <div class="form-check py-2 ml-3">
+                   <input class="form-check-input" type="radio" name="answer" value="d">
+                      <label class="form-check-label" for="exampleRadios1">
+                          {% if questions.test_question.optionimg4 %}
+                          <img src="{{questions.test_question.optionimg4.url}}" class="img-thumbnail img-fluid">
+                          {% else %}
+                          <span class="h5 new-question ml-2">{{ questions.test_question.option4 }}</span>
+                          {% endif %}
+                      </label>
+                 </div>
+                 {% if end_link == None %}
+                   <input type="submit" id='next' value="Next" class="btn btn-primary btn-outline-default mt-4">
+                 {% else %}
+                    <input type="submit" id='next' value="EndTest" class="btn btn-primary btn-outline-default mt-4">
+                 {% endif %}
+            </form>
+        </div>
+        <!-- End of Detail side -->
+    </div>
+</div>
+{% else %}
+<!-- Start of Admin panel before exam -->
+<div class="container py-5 bg-light">
+    <div class="row justify-content-center">
+        <!-- start of title -->
+        <div class="col-10">
+            <h3 class="h3 font-weight-bold text-center question-title-admin">{{ test.test_name }}</h3>
+            <p align="right" class="font-weight-bold">-{{test.test_date}} {{test.test_time}}</p>
+            <a class="register-link p-3" href="{% url 'exam:register' pk=test.pk %}">Registration Link</a>
+        </div>
+        <!-- End of title -->
+        <!-- start of questions -->
+        <script>var j=1;</script>
+        {% for i in all_questions %}
+        <div class="col-10 col-md-4 col-lg-4 p-4">
+            <!-- Start of a Card -->
+            <div class="card question-card-shadow">
+
+                <div class="card-title pt-3 pl-3 new-question">
+                    <h4 class="font-weight-bold"><span>Q<script>document.write(j);</script></span> {{ i.test_question.question }}</h4>
+                </div>
+                <div class="form-check py-2 ml-3">
+                   <input class="form-check-input" type="radio" name="answer" value="a">
+                      <label class="form-check-label" for="exampleRadios1">
+                          {% if i.test_question.optionimg1 %}
+                          <img src="{{i.test_question.optionimg1.url}}" class="img-thumbnail img-fluid">
+                          {% else %}
+                          <span class="h5 new-question ml-2">{{ i.test_question.option1 }}</span>
+                          {% endif %}
+                      </label>
+                 </div>
+                 <div class="form-check py-2 ml-3">
+                   <input class="form-check-input" type="radio" name="answer" value="b">
+                      <label class="form-check-label" for="exampleRadios1">
+                          {% if i.test_question.optionimg2 %}
+                          <img src="{{i.test_question.optionimg2.url}}" class="img-thumbnail img-fluid">
+                          {% else %}
+                          <span class="h5 new-question ml-2">{{ i.test_question.option2 }}</span>
+                          {% endif %}
+                      </label>
+                 </div>
+                <div class="form-check py-2 ml-3">
+                   <input class="form-check-input" type="radio" name="answer" value="c">
+                      <label class="form-check-label" for="exampleRadios1">
+                          {% if i.test_question.optionimg3 %}
+                          <img src="{{i.test_question.optionimg3.url}}" class="img-thumbnail img-fluid">
+                          {% else %}
+                          <span class="h5 new-question ml-2">{{ i.test_question.option3 }}</span>
+                          {% endif %}
+                      </label>
+                 </div>
+                <div class="form-check py-2 ml-3">
+                   <input class="form-check-input" type="radio" name="answer" value="d">
+                      <label class="form-check-label" for="exampleRadios1">
+                          {% if i.test_question.optionimg4 %}
+                          <img src="{{i.test_question.optionimg4.url}}" class="img-thumbnail img-fluid">
+                          {% else %}
+                          <span class="h5 new-question ml-2">{{ i.test_question.option4 }}</span>
+                          {% endif %}
+                      </label>
+                 </div>
+
+                <div class="justify-content-around p-3">
+                    <a class="h5" href="{% url 'exam:test_q_delete' pk=i.pk %}">Delete <i class="fas fa-arrow-right"></i> </a>
+                </div>
+
+            </div>
+            <!-- End of a Card -->
+        </div>
+        <script>j++;</script>
+        {% endfor %}
+        <!-- End of questions -->
+
+    </div>
+</div>
+<!-- End of Admin panel after Exam -->
+{% endif %}
+{% endblock %}

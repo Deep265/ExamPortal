@@ -1,0 +1,52 @@
+.center{
+   text-align:center;
+}
+
+.right{
+  margin-left:1rem;
+}
+
+.post-title{
+  font-family: 'PT Sans Narrow', sans-serif;
+font-family: 'Rambla', sans-serif;
+font-family: 'Roboto', sans-serif;
+}
+.nav-color{
+   background-color:#4B4E6D;
+}
+
+.titles{
+  color: #5C9EAD;
+}
+
+.titles1{
+color: #1098F7;
+
+}
+
+.text-color{
+  color: #8A897C;
+}
+.nav-items{
+  color: #84DCC6;
+}
+.roboto{
+font-family: 'Roboto', sans-serif;
+}
+.date{
+   margin-right:0.5rem;
+   font-size:0.8rem;
+}
+.para{
+font-family: 'Nunito', sans-serif;
+font-family: 'PT Sans Narrow', sans-serif;
+font-family: 'Roboto', sans-serif;
+font-size: 1.4rem;
+}
+
+.para-post{
+font-family: 'Nunito', sans-serif;
+font-family: 'PT Sans Narrow', sans-serif;
+font-family: 'Roboto', sans-serif;
+
+}

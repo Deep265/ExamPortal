@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{% block body %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col col-sm-2 col-md-3 col-lg-4">
+            <!-- Cards -->
+            {% for post in post_list %}
+            <div class="col">
+            <div class="card card-body">
+                <h2 class="card-title post-title"><a href="{% url 'blog:post_detail' pk=post.pk %}" class="titles1">{{ post.title }}</a></h2>
+                <p class="card-text text-color para-post">{{ post.text|truncatewords_html:100 }}</p>
+                <div>
+                    <p class="font-weight-bold text-color"> Post Not published Yet!!!</p>
+                    <button class="btn titles1" style="background-color:#1098F7"><a href="{% url 'blog:post_detail' pk=post.pk %}" class="text-light">More</a></button>
+
+                </div>
+                    <!-- End of Arrow -->
+                </a>
+            </div>
+        </div>
+            {% endfor %}
+            <!-- End of Cards -->
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

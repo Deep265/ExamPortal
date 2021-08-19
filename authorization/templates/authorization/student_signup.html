@@ -1,0 +1,22 @@
+{% extends 'test/index_test.html' %}
+{% load bootstrap %}
+{% block nav %}
+
+<div class="container">
+    <div class="row justify-content-center">
+       <div class="col-10">
+          <form method="POST">
+           {{ form|bootstrap }}
+          {% csrf_token %}
+              <input type="text" placeholder="phone" name="phone">
+              <input type="text" placeholder="std" name="class">
+              <input type="submit" value="Submit" class="btn btn-warning btn-outline-dark">
+          </form>
+       </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+

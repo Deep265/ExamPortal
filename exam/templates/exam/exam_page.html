@@ -1,0 +1,21 @@
+
+{% include 'index.html' %}
+<div class="container">
+    <div class="row">
+    <div class="col-lg-6 col-sm-6 col-md-6 p-2" style="height:500px">
+
+        <iframe src="{% url 'exam:exam_list' %}" height="100%" width="100%"></iframe>
+
+    </div>
+        <div class="col-lg-6 col-sm-6 col-md-6 p-2" style="height:500px">
+       <iframe src="{% url 'exam:exam_target' %}" name="window1" height="100%" width="100%"></iframe>
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+

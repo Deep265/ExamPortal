@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+{% load bootstrap %}
+{% block body %}
+
+<div class="container">
+<form method="POST">
+    {{ form|bootstrap }}
+    {% csrf_token %}
+    <input type="submit" value="Submit" class="btn btn-warning btn-outline-dark">
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+.test-links-font-size{
+  font-size: 1.2rem;
+}
+
+.test-list-title{
+  font-family: 'Courgette', cursive;
+  color: #363333;
+}
+
+.test-list-background{
+  min-height: 60vh;
+}
+
+.test-questions{
+   font-size:1.4rem !important;
+   color:red;
+}
+
+.light-font{
+   font-family: 'Fira Sans', sans-serif;
+}
+
+.question-set{
+  font-size: 1.2rem;
+}
+
+.question-set-shadow{
+  box-shadow: 10px 10px grey;
+  border: 2px solid #6CCFF6;
+}
+
+.question-set-height{
+   min-height: 60vh;
+}
+

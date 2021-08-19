@@ -1,0 +1,78 @@
+{% extends 'index.html' %}
+{% block body %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <div class="container">
+   <div class="row">
+       <div class="col">
+           <!--Start of the detail -->
+           <div class="">Posted By:- <span class="roboto" style="font-size:2rem">{{ post.user }}</span>
+             {% if request.user == post.user %}
+               <div align=right class=""><a href="{% url 'blog:delete' pk=post.pk %}" class="btn btn-danger btn-outline-dark">Delete</a></div>
+             {% endif %}
+           </div>
+           <div class="center roboto display-4">
+<span class="">{{ post.title }}</span> <span class="date"> -{{ post.created_date }}</span>
+           </div>
+           <div class="container ml-3">
+               <span class="para text-color">{{ post.text }}<p align=right> -{{ post.published_date }}</p></span>
+           </div>
+
+
+{% if post.published_date %}
+
+           {% else %}
+<a href="{% url 'blog:publish' pk=post.pk %}">Publish</a>
+{% endif %}
+
+{% if request.user == post.user %}
+ <div class="m-4">
+<H1>Do you want to delete this Post?</H1>
+<a href="{% url 'blog:delete' pk=post.pk %}" class="btn btn-danger btn-outline-dark">Delete</a>
+ </div>
+{% endif %}
+<!-- Start of comment -->
+<h3>Comments:-</h3>
+            <a href="{% url 'blog:add_comment' pk=post.pk %}" class="border-right-5 pt-3">Add comment
+                    <!-- Arrow -->
+                <svg width="1.4em" height="1.4em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                </svg> </a>
+           {% if not post.posts.all %}
+           <div class="jumbotron rounded">
+               <div class="container">
+                   <p class="lead"><b>No Comments Here<b></p>
+               </div>
+           </div>
+           {% endif %}
+
+
+{% for i in post.posts.all %}
+           <div class="p-2 mt-4 rounded-lg mb-4" style="background-color:#dae4ee">
+               <div class="mb-4 container">
+                   <div class="border">
+ <span class="font-weight-bold m-1">Author :- {{ i.author }}</span> <br>
+       <hr class="my-1">
+           <span class="ml-5 m-1">Comment :- {{ i.text }}</span><br>
+           {% if request.user == post.user %}
+  <a href="{% url 'blog:delete_comment' pk=i.pk%}">Delete</a>
+           {% endif %}
+                   </div>
+               </div>
+       </div>
+
+{% endfor %}
+<!-- End of comments -->
+           <!-- End of the detail -->
+       </div>
+   </div>
+ </div>
+</body>
+</html>
+
+{% endblock %}

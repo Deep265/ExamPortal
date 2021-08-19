@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+{% block body %}
+
+<form method="POST">
+    {% csrf_token %}
+    <p class="h1">Are you sure do you want to delete this {{ object }}?</p>
+    <input type="submit" VALUE="submit" class="btn-warning btn-outline-dark">
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,161 @@
+{% extends 'test/index_test.html' %}
+{% block nav %}
+
+<div class="container bg-light p-5">
+    <div class="row">
+        <div class="col text-center">
+            <!-- Title -->
+            <p class="test-list-title h2 pb-4">Add a new {{ sub }} Question Globally or To your Personal Question Set!!</p>
+            <!-- End of title -->
+        </div>
+    </div>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group row text-center justify-content-center">
+        <label for="question" class="col-sm-3 col-lg-2 col-form-label new-question" style="font-family: 'Fira Sans', sans-serif;font-size:1.2rem;">Question:-</label>
+        <div class="col-sm-6 col-lg-7">
+            <input type="text" name="question" class="form-control">
+        </div>
+    </div>
+    <div class="form-group row text-center justify-content-center">
+        <label for="option1" class="col-sm-3 col-lg-2 col-form-label new-question" style="font-family: 'Fira Sans', sans-serif;font-size:1.2rem;">Option1:-</label>
+        <div class="col-sm-6 col-lg-7">
+            <input type="text" name="option1" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group row text-center justify-content-center">
+        <label for="option1" class="col-sm-3 col-lg-2 col-form-label new-question" style="font-family: 'Fira Sans', sans-serif;font-size:1.2rem;">Option2:-</label>
+        <div class="col-lg-7 col-sm-6">
+            <input type="text" name="option2" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group row text-center justify-content-center">
+        <label for="option1" class="col-sm-3 col-lg-2 col-form-label new-question" style="font-family: 'Fira Sans', sans-serif;font-size:1.2rem;">Option3:-</label>
+        <div class="col-sm-6 col-lg-7">
+            <input type="text" name="option3" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group row text-center justify-content-center">
+        <label for="option1" class="col-sm-3 col-lg-2 col-form-label new-question" style="font-family: 'Fira Sans', sans-serif;font-size:1.2rem;">Option4:-</label>
+        <div class="col-sm-6 col-lg-7">
+            <input type="text" name="option4" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group row text-center justify-content-center">
+        <label for="option1" class="col-sm-3 col-lg-2 col-form-label new-question" style="font-family: 'Fira Sans', sans-serif;font-size:1.2rem;">Correct Option:-</label>
+        <div class="col-sm-6 col-lg-7">
+            <input type="text" name="correct" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group row text-center justify-content-center">
+        <span class="col-lg-2 col-sm-3" style="font-family: 'Fira Sans', sans-serif;font-size:1.2rem;">Option1 Image:-</span>
+        <div class="custom-file col-lg-10 col-sm-6">
+        <input type="file" class=custom-file-input name="img1" id="inputGroupFile01">
+    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+  </div>
+    </div>
+
+<div class="form-group row text-center justify-content-center">
+    <span class="col-lg-2 col-sm-3" style="font-family: 'Fira Sans', sans-serif;font-size:1.2rem;">Option2 Image:-</span>
+
+    <div class="custom-file col-lg-10 col-sm-6">
+        <input type="file" class=custom-file-input name="img2" id="inputGroupFile02">
+    <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+  </div>
+</div>
+
+<div class="form-group row text-center justify-content-center">
+    <span class="col-lg-2 col-sm-3" style="font-family: 'Fira Sans', sans-serif;font-size:1.2rem;">Option3 Image:-</span>
+
+    <div class="custom-file col-lg-10 col-sm-6">
+        <input type="file" class=custom-file-input name="img3" id="inputGroupFile03">
+    <label class="custom-file-label" for="inputGroupFile03">Choose file</label>
+  </div>
+</div>
+
+    <div class="form-group row text-center justify-content-center">
+        <span class="col-lg-2 col-sm-3" style="font-family: 'Fira Sans', sans-serif;font-size:1.2rem;">Option4 Image:-</span>
+        <div class="custom-file col-lg-10 col-sm-6">
+        <input type="file" class=custom-file-input name="img1" id="inputGroupFile04">
+    <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+  </div>
+    </div>
+
+    <div class="form-group row text-center justify-content-center">
+        <span class="col-lg-2 col-sm-3" style="font-family: 'Fira Sans', sans-serif;font-size:1.2rem;">Correct Image:-</span>
+        <div class="custom-file col-lg-10 col-sm-6">
+        <input type="file" class=custom-file-input name="img1" id="inputGroupFile05">
+    <label class="custom-file-label" for="inputGroupFile05">Choose file</label>
+  </div>
+    </div>
+
+
+<div class="text-center pt-5">
+    <input type="submit" value="Submit" class="btn btn-warning btn-outline-dark text-center">
+</div>
+
+</form>
+
+</div>
+
+<!-- Start of Footer -->
+<footer class="container-fluid footer-background p-5">
+    <div class="row">
+        <!-- Start of the info Page -->
+        <div class="col-md-6 col-lg-6 col-10">
+            <div class="text-center p-4">
+                <i class="fab fa-asymmetrik fa-4x navbar-text-color"></i>
+            </div>
+            <div class="text-center p-3">
+               <p class="footer-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora incidunt
+                   et perferendis ratione quod accusamus sit dolor optio eveniet vero.
+               </p>
+            </div>
+            <div class="">
+                <p class="navbar-text-color text-center">
+                    Read More <i class="fas fa-arrow-right"></i>
+                </p>
+            </div>
+        </div>
+        <!-- End of the info Page -->
+        <!-- Start of Contact Page -->
+        <div class="col-md-6 col-lg-6 col-10">
+            <div class="text-center p-4">
+                <h2 class="footer-contact-text test-font">Contact</h2>
+            </div>
+          <!-- Start of Address -->
+            <div class="d-flex justify-content-between my-5">
+                <i class="fas fa-map navbar-text-color"></i>
+                <span class="footer-text-color">
+                    123 Main Street Veince,CA 90020
+                </span>
+            </div>
+          <!-- End of Address -->
+          <!-- Start of Phone -->
+            <div class="d-flex justify-content-between my-5">
+                <i class="fas fa-phone navbar-text-color"></i>
+                <span class="footer-text-color">
+                    +123 456 789
+                </span>
+            </div>
+          <!-- End of Phone -->
+          <!-- Start of Email -->
+            <div class="d-flex justify-content-between my-5">
+                <i class="fas fa-envelope navbar-text-color"></i>
+                <span class="footer-text-color">
+                    Email@Email.com
+                </span>
+            </div>
+          <!-- End of Email -->
+        </div>
+        <!-- End of Contact Page -->
+    </div>
+</footer>
+<!-- End of Footer -->
+{% endblock %}
